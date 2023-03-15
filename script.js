@@ -3,9 +3,12 @@ let numRows = 0;
 let numCols = 0;
 let colorSelected; 
 
-//NOTE: Ive set it so when creating columns or rows, each column or row will have 
-//and ID set to "tr" (for rows, td for columns) and the number row it is.
-//i.e. the first row has an id of tr1, the second will be tr2, etc.
+// NOTE: Ive set it so when creating columns or rows, each column or row will have 
+// and ID set to "tr" (for rows, td for columns) and the number row it is.
+// i.e. the first row has an id of tr1, the second will be tr2, etc.
+
+// NOTE2: im considering rows as primary and columns as secondary.
+// So each column node will be a child of its row node
 
 // Add a row
 function addR() {
@@ -35,6 +38,8 @@ function addC() {
     } else {
         document.getElementById("tr"+numRows).appendChild(td);
     }
+    // check each row. While a row has less children than the number of columns,
+    // add columns to that row.
     for(let i =0; i< numRows; i++){
         while(document.getElementById("tr"+(i+1)).children.length < numCols){
             let td = document.createElement("td");
