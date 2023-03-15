@@ -1,11 +1,18 @@
 // Declare global variables
 let numRows = 0;
-let numCols = 0;
+let numCols = 3;
 let colorSelected; 
 
 // Add a row
 function addR() {
-    alert("Clicked Add Row"); // Replace this line with your code.
+    numRows++;
+    let tr = document.createElement("tr");
+    tr.setAttribute("id", numRows);
+    document.querySelector("tbody").appendChild(tr);
+    for(let i=0; i<numCols; i++){
+        let td = document.createElement("td");
+        document.getElementById(numRows).appendChild(td);
+    }
 }
 
 // Add a column
