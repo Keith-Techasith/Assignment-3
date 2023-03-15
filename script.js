@@ -12,10 +12,16 @@ function addR() {
     numRows++;
     let tr = document.createElement("tr");
     tr.setAttribute("id", "tr"+numRows);
-    document.querySelector("table").appendChild(tr);
-    for(let i=0; i<numCols; i++){
-        let td = document.createElement("td");
-        document.getElementById("tr"+numRows).appendChild(td);
+    document.getElementById("grid").appendChild(tr);
+    if(numCols == 0){
+        //row needs at least 1 column to display
+        addC();
+    }else {
+        for(let i=0; i<numCols; i++){
+            let td = document.createElement("td");
+            td.setAttribute("id", "td"+(i+1));
+            document.getElementById("tr"+numRows).appendChild(td);
+        }
     }
 }
 
@@ -24,16 +30,32 @@ function addC() {
     numCols++
     let td = document.createElement("td");
     td.setAttribute("id", "td"+numCols);
-    document.querySelector("table").appendChild(td);
-    for(let i=0; i<numRows; i++){
-        let tr = document.createElement("tr");
-        document.getElementById("td"+numCols).appendChild(tr);
+    if(numRows == 0){
+        addR();
+    } else {
+        document.getElementById("tr"+numRows).appendChild(td);
     }
+    for(let i =0; i< numRows; i++){
+        while(document.getElementById("tr"+(i+1)).children.length < numCols){
+            let td = document.createElement("td");
+            //ID no should be = to # of children + 1 ( as theres always 1 created initially)
+            td.setAttribute("id", "td"+(document.getElementById("tr"+(i+1)).children.length+1));
+            document.getElementById("tr"+(i+1)).appendChild(td);
+        }
+    }
+    
+
 }
+
 
 // Remove a row
 function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+    if(numRows <=0){
+        alert("No rows to remove");
+    }
+    numRows--
+    document.querySelector("table").removeChild(document.querySelector("table").lastElementChild);
+    
 }
 
 // Remove a column
