@@ -83,7 +83,6 @@ function selectColor(){
 
 // Fill all uncolored cells
 function fillU(){
-    selectColor();
     for(let i =0; i < numCols; i++){
         let tr = document.getElementById("tr" + (i+1));
         for(let j=0; j<tr.children.length; j++){
@@ -97,7 +96,6 @@ function fillU(){
 
 // Fill all cells
 function fillAll(){
-    selectColor(); 
     for(let i =0; i< numRows; i++){
     let tr = document.getElementById("tr"+ (i+1));
         for(let j =0; j< numCols; j++){
@@ -112,7 +110,6 @@ function fillAll(){
 
 // Clear all cells
 function clearAll(){
-    selectColor();
     for(let i=0; i<numRows; i++){
         let tr = document.getElementById("tr"+(i+1));
         for(let j =0; j<numCols; j++){
