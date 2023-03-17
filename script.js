@@ -10,6 +10,12 @@ let colorSelected;
 // NOTE2: im considering rows as primary and columns as secondary.
 // So each column node will be a child of its row node
 
+// NOTE 3: there is a slight bug that the grid itself (not the cells) can be colored
+// with the coloring function onclick. this is because the table itself has the onclick
+// function, as this seems more efficient than having each cell with its own event listener.
+// as a result I think its better to keep the bug as a tradeoff for efficiency,
+// since the bug does not break the other functionality. (its a little funny though)
+
 // Add a row
 function addR() {
     numRows++;
@@ -90,6 +96,7 @@ function selectColor(){
     console.log(colorSelected);
 }
 
+//colors a cell when a color is selected and a cell is clicked
 function colorSingle(event){
     // need this if statement or it freaks out when creating cells
     // as before cells are created, they have no style to change
@@ -102,7 +109,7 @@ function colorSingle(event){
 
 // Fill all uncolored cells
 function fillU(){
-    for(let i =0; i < numCols; i++){
+    for(let i =0; i < numRows; i++){
         let tr = document.getElementById("tr" + (i+1));
         for(let j=0; j<tr.children.length; j++){
             let td= tr.children[j];
