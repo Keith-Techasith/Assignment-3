@@ -65,7 +65,14 @@ function removeR() {
 
 // Remove a column
 function removeC() {
-    alert("Clicked Remove Col"); // Replace this line with your code.
+    if(numCols <=0){
+        alert("No columns to remove"); 
+    }
+    for(let i = 0; i< numRows; i++ ){
+        let tr = document.getElementById("tr" +(i+1)); 
+        tr.removeChild(tr.lastChild);
+    }
+    numCols--; 
 }
 
 // Set global variable for selected color
@@ -81,10 +88,28 @@ function fillU(){
 
 // Fill all cells
 function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+    selectColor(); 
+    for(let i =0; i< numRows; i++){
+    let tr = document.getElementById("tr"+ (i+1));
+        for(let j =0; j< numCols; j++){
+            let td = tr.children[j];
+            if(td.style.backgroundColor ===""){
+                td.style.backgroundColor = colorSelected; 
+            }
+        }
 }
+}
+
 
 // Clear all cells
 function clearAll(){
-    alert("Clicked Clear All"); // Replace this line with your code.
+    selectColor();
+    for(let i=0; i<numRows; i++){
+        let tr = document.getElementById("tr"+(i+1));
+        for(let j =0; j<numCols; j++){
+            let td = tr.children[j];
+            td.style.backgroundColor= "white"; 
+            
+        }
+    }
 }
