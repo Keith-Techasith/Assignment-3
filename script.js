@@ -114,7 +114,7 @@ function clearAll(){
         let tr = document.getElementById("tr"+(i+1));
         for(let j =0; j<numCols; j++){
             let td = tr.children[j];
-            td.style.backgroundColor= "white"; 
+            td.style.backgroundColor= ""; 
             
         }
     }
