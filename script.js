@@ -23,6 +23,9 @@ function addR() {
         for(let i=0; i<numCols; i++){
             let td = document.createElement("td");
             td.setAttribute("id", "td"+(i+1));
+            td.setAttribute("row", "tr"+numRows);
+            //td.setAttribute(style.backgroundColor, "transparent");
+            td.addEventListener(onclick, colorSingle(td));
             document.getElementById("tr"+numRows).appendChild(td);
         }
     }
@@ -33,6 +36,9 @@ function addC() {
     numCols++
     let td = document.createElement("td");
     td.setAttribute("id", "td"+numCols);
+    td.setAttribute("row", "tr"+numRows);
+    //td.setAttribute(style.backgroundColor, "transparent");
+    td.addEventListener(onclick, colorSingle(td));
     if(numRows == 0){
         addR();
     } else {
@@ -45,6 +51,9 @@ function addC() {
             let td = document.createElement("td");
             //ID no should be = to # of children + 1 ( as theres always 1 created initially)
             td.setAttribute("id", "td"+(document.getElementById("tr"+(i+1)).children.length+1));
+            td.setAttribute("row", "tr"+(i+1));
+            //td.setAttribute(style.backgroundColor, "transparent");
+            td.addEventListener(onclick, colorSingle(td));
             document.getElementById("tr"+(i+1)).appendChild(td);
         }
     }
@@ -79,6 +88,16 @@ function removeC() {
 function selectColor(){
     colorSelected = document.getElementById("selectedColorId").value;
     console.log(colorSelected);
+}
+
+function colorSingle(event){
+    // need this if statement or it freaks out when creating cells
+    // as before cells are created, they have no style to change
+    if(event.target){
+        td = event.target;
+        td.style.backgroundColor = colorSelected;
+    }
+    
 }
 
 // Fill all uncolored cells
